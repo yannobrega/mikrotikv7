@@ -1,0 +1,16 @@
+# CONFIGURACAO DE FIREWALL
+
+/ip firewall filter add action=accept chain=input comment="===== ACEITA ESTAB" connection-state=established,related,untracked
+/ip firewall filter add action=accept chain=input comment="===== ACEITA WINBOX REMOTO" dst-port=9090 in-interface-list=ISP protocol=tcp
+/ip firewall filter add action=accept chain=input comment="===== ACEITA WINBOX LOCAL" dst-port=9090 protocol=tcp src-address-list=SUPORTE
+/ip firewall filter add action=accept chain=input comment="===== ACEITA ICMP 100/s" limit=100,5:packet protocol=icmp
+/ip firewall filter add action=add-src-to-address-list address-list=PORTSCAN address-list-timeout=5d chain=input comment="===== DETECTA PORTSCAN" in-interface-list=ISP protocol=tcp psd=21,5s,3,1
+/ip firewall filter add action=add-src-to-address-list address-list=PORTSCAN address-list-timeout=5d chain=input comment="===== DETECTA PORTAS VULNERAVEIS" dst-port=20-25,3389,8291 in-interface-list=ISP protocol=tcp
+/ip firewall filter add action=drop chain=input comment="===== DROP INVALIDAS" connection-state=invalid
+/ip firewall filter add action=drop chain=input comment="===== DROP GERAL"
+/ip firewall nat add action=masquerade chain=srcnat comment="===== MASQUERADE" out-interface-list=ISP
+/ip firewall raw add action=drop chain=prerouting comment="===== DROP PORTSCAN" src-address-list=PORTSCAN
+
+# Criado por Yan Nobrega
+# Data: 17/01/2024
+# CoreX Tecnologia
