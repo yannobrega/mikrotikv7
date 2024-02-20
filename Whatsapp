@@ -1,0 +1,13 @@
+# 1) Adicione o número +34 644 10 28 72 aos seus contatos
+
+# 2) Envie a mensagem "I allow callmebot to send me messages" para o contato criado
+
+# 3) Você receberá as seguintes mensagens do BOT
+# "API Activated for your phone number. Your APIKEY is 123123"
+# https://api.callmebot.com/whatsapp.php?phone=[SEU-CELULAR]&text=[SUA+MENSAGEM]&apikey=[SUA-CHAVE-DE-API]
+
+# 4) Crie o seguinte comando;
+# /tool/fetch keep-result=no url="https://api.callmebot.com/whatsapp.php?phone=[SEU-CELULAR]&apikey=[SUA-CHAVE-DE-API]&text=[SUA+MENSAGEM+AQUI]"
+# *o caracter "+" representa o espaço
+
+# 5) Configure seu netwatch e cole o comando.
