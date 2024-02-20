@@ -1,0 +1,10 @@
+# 1) Crie sua webrook no seu discord no caminho:
+# Configuracoes do servidor > Integracoes > Webrooks
+
+# 2) Copie o endereco da sua webrook
+# Extraia somente a partir do ID da sua webrook conforme exemplo:
+# https://discord.com/api/webhooks/SUA-WEBROOK
+
+# 3) Cole no comando abaixo e configure seu Netwatch;
+
+/tool/fetch keep-result=no url="https://mikrotikdc.vercel.app/SUA-WEBROOK/SUA+MENSAGEM+AQUI"
