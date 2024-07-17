@@ -1,0 +1,12 @@
+# Script Gateway em Address List DHCP Client
+
+{
+    :local count [/ip route print count-only where comment="Monitoramento-LINK"]
+    :if ($bound=1) do={
+        :if ($count = 0) do={
+            /ip firewall address-list add list=GATEWAYS address=$"gateway-address"
+        } else={
+            :error "Multiple routes found"
+            }
+        }
+ }
