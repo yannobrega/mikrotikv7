@@ -1,0 +1,21 @@
+# Script Routing Table DHCP Client
+
+{
+    :local count [/ip route print count-only where comment="RT-01"]
+    :if ($bound=1) do={
+        :if ($count = 0) do={
+            /ip route add gateway=$"gateway-address" routing-table=RT-01 comment="RT-01"
+        } else={
+            :if ($count = 1) do={
+                :local test [/ip route find where comment="RT-01"]
+                :if ([/ip route get $test gateway] != $"gateway-address") do={
+                    /ip route set $test gateway=$"gateway-address"
+                }
+            } else={
+                :error "Multiple routes found"
+            }
+        }
+    } else={
+        /ip route remove [find comment="RT-01"]
+    }
+}
