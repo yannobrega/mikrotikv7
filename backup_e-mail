@@ -1,0 +1,6 @@
+/export terse show-sensitive file=export
+/system/backup/save dont-encrypt=yes name=bkp 
+/tool/e-mail/send to=emailquereceberaobackup@dominio.com.br\
+    from=remetente@dominio.com.br\
+    subject="$[/system identity get name] BACKUP SEMANAL"\
+    body="Backup realizado no dia: $[/system clock get date]" file=bkp.backup,export.rsc
