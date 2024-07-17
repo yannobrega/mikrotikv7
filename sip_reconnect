@@ -1,0 +1,5 @@
+{
+:local sipConnections [:toarray [/ip firewall connection find connection-type=sip]]
+:foreach sipConnection in=$sipConnections do={
+  /ip firewall connection remove $sipConnection
+}
