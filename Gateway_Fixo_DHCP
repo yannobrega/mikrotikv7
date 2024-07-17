@@ -1,0 +1,21 @@
+# Script Failover DHCP Client
+
+{
+    :local count [/ip route print count-only where comment="Monitoramento-LINK"]
+    :if ($bound=1) do={
+        :if ($count = 0) do={
+            /ip route add ds=8.8.4.4 gateway=$"gateway-address" comment="Monitoramento-LINK"
+        } else={
+            :if ($count = 1) do={
+                :local test [/ip route find where comment="Monitoramento-LINK"]
+                :if ([/ip route get $test gateway] != $"gateway-address") do={
+                    /ip route set $test gateway=$"gateway-address"
+                }
+            } else={
+                :error "Multiple routes found"
+            }
+        }
+    } else={
+        /ip route remove [find comment="Monitoramento-LINK"]
+    }
+}
