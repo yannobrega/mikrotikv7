@@ -1,5 +1,5 @@
 /tool e-mail send to="emaildedestino@dominio.com.br" \
 subject="COLOQUE AQUI O TITULO DO E-MAIL" \
-body="Escreva aqui algo que irá no corpo do e-mail
+body="Escreva aqui algo que irá no corpo do e-mail"
 Data: $[/system clock get date]
 Horário: $[/system clock get time]"
